@@ -20,6 +20,7 @@ public class Server {
 				new ThreadedSocket(server.accept());
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }
@@ -45,6 +46,7 @@ class ThreadedSocket extends Thread {
 			line = "";
 			int postDataI = -1;
 			while ((line = in.readLine()) != null && (line.length() != 0)) {
+				System.out.println(line);
 				if (line.indexOf("Content-Length:") > -1) {
 					postDataI = new Integer(line.substring(line.indexOf("Content-Length:") + 16, line.length()))
 							.intValue();
@@ -59,6 +61,8 @@ class ThreadedSocket extends Thread {
 				postData = new String(charArray);
 			}
 
+			System.out.println(request_method);
+			
 			String shorten = shortenString(request_method);
 			if (shorten.length() == 0) {
 				out.println("HTTP/1.0 200 OK");
@@ -67,11 +71,20 @@ class ThreadedSocket extends Thread {
 				out.println("");
 
 				out.println(readFile("Main.html"));
-				
 
 			} else {
 				out.println("HTTP/1.0 200 OK");
-				out.println("Content-Type: text/html; charset=utf-8");
+				
+				if(shorten.contains(".html")) {
+					out.println("Content-Type: text/html; charset=utf-8");
+				}
+				else if(shorten.contains(".css")) {
+					out.println("Content-Type: text/css; charset=utf-8");
+				}
+				else if(shorten.contains(".js")) {
+					out.println("Content-Type: applications/javascript; charset=utf-8");
+				}
+				
 				out.println("Server: MINISERVER");
 				out.println("");
 
@@ -112,12 +125,18 @@ class ThreadedSocket extends Thread {
 		}
 		s = s.substring(1);
 		i = s.indexOf("html");
-		if (i < 0) {
-			i = -4;
+		if (i >= 0) {
+			return s.substring(0, i+4);
 		}
-		s = s.substring(0, i + 4);
-		System.out.println(s);
-		return s;
+		i = s.indexOf("css");
+		if (i >= 0) {
+			return s.substring(0, i+3);
+		}
+		i = s.indexOf("js");
+		if (i >= 0) {
+			return s.substring(0, i+2);
+		}
+		return "";
 
 	}
 }
