@@ -7,6 +7,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Server {
 
@@ -24,14 +27,27 @@ public class Server {
 		}
 	}
 }
+	
 
 class ThreadedSocket extends Thread {
 
 	private Socket insocket;
+	private Map<String, String> map;
 
 	ThreadedSocket(Socket insocket) {
+		initiateMap();
 		this.insocket = insocket;
 		this.start();
+	}
+	
+	private void initiateMap() {
+		map = new HashMap<String, String>();
+		map.put(".html", "Content-Type: text/html; charset=utf-8");
+		map.put(".css", "Content-Type: text/css; charset=utf-8");
+		map.put(".js", "Content-Type: applications/javascript; charset=utf-8");
+		map.put(".png", "Content-Type: image/png");
+		map.put(".jpeg", "Content-Type: image/jpeg");
+		map.put(".jpg", "Content-Type: image/jpg");
 	}
 
 	@Override
@@ -74,17 +90,7 @@ class ThreadedSocket extends Thread {
 
 			} else {
 				out.println("HTTP/1.0 200 OK");
-				
-				if(shorten.contains(".html")) {
-					out.println("Content-Type: text/html; charset=utf-8");
-				}
-				else if(shorten.contains(".css")) {
-					out.println("Content-Type: text/css; charset=utf-8");
-				}
-				else if(shorten.contains(".js")) {
-					out.println("Content-Type: applications/javascript; charset=utf-8");
-				}
-				
+				out.println(mimeType(shorten));
 				out.println("Server: MINISERVER");
 				out.println("");
 
@@ -98,6 +104,15 @@ class ThreadedSocket extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String mimeType(String input) {
+		for(Map.Entry<String, String> entry: map.entrySet()) {
+			if(input.contains(entry.getKey())) {
+				return entry.getValue();
+			}
+		}
+		return "";
 	}
 
 	public String readFile(String filename) {
