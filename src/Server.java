@@ -57,12 +57,14 @@ class ThreadedSocket extends Thread {
 			PrintWriter out = new PrintWriter(insocket.getOutputStream());
 			BufferedReader in = new BufferedReader(new InputStreamReader(is));
 			String line;
+			
 			line = in.readLine();
 			String request_method = line;
+			
 			line = "";
 			int postDataI = -1;
 			while ((line = in.readLine()) != null && (line.length() != 0)) {
-				System.out.println(line);
+				//System.out.println(line);
 				if (line.indexOf("Content-Length:") > -1) {
 					postDataI = new Integer(line.substring(line.indexOf("Content-Length:") + 16, line.length()))
 							.intValue();
@@ -70,17 +72,16 @@ class ThreadedSocket extends Thread {
 			}
 
 			String postData = "";
-
 			if (postDataI > 0) {
 				char[] charArray = new char[postDataI];
 				in.read(charArray, 0, postDataI);
 				postData = new String(charArray);
 			}
 
-			System.out.println(request_method);
+			Query q = new Query(shortenString(request_method));
+			String fullPath = q.getPath()+q.getPage();
 			
-			String shorten = shortenString(request_method);
-			if (shorten.length() == 0) {
+			if (fullPath.length()==0) {
 				out.println("HTTP/1.0 200 OK");
 				out.println("Content-Type: text/html; charset=utf-8");
 				out.println("Server: MINISERVER");
@@ -90,14 +91,16 @@ class ThreadedSocket extends Thread {
 
 			} else {
 				out.println("HTTP/1.0 200 OK");
-				out.println(mimeType(shorten));
+				out.println(mimeType(fullPath));
 				out.println("Server: MINISERVER");
 				out.println("");
 
 				// shows the file in the extension
-				out.println(readFile(shorten));
+				out.println(readFile(fullPath));
 
 			}
+			
+			q.getArguments();
 			out.close();
 			insocket.close();
 
@@ -134,24 +137,8 @@ class ThreadedSocket extends Thread {
 	}
 
 	public String shortenString(String s) {
-		int i = 0;
-		while (s.charAt(i) != '/') {
-			s = s.substring(1);
-		}
-		s = s.substring(1);
-		i = s.indexOf("html");
-		if (i >= 0) {
-			return s.substring(0, i+4);
-		}
-		i = s.indexOf("css");
-		if (i >= 0) {
-			return s.substring(0, i+3);
-		}
-		i = s.indexOf("js");
-		if (i >= 0) {
-			return s.substring(0, i+2);
-		}
-		return "";
-
+		String ret = s.substring(s.indexOf(" ")+2);
+		ret = ret.substring(0, ret.indexOf("HTTP")-1);
+		return ret;
 	}
 }
