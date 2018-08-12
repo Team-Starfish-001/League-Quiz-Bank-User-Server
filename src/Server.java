@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,7 +8,16 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
+
+/**
+ * 
+ * How to send a request to redirect
+ * 
+ * 	var xhr = XMLHttpRequest();
+ * 	xhr.get('GET', "http://localhost:8080/...", true);
+ * 	xhr.send();
+ * 
+ */
 
 public class Server {
 
@@ -32,8 +40,7 @@ public class Server {
 class ThreadedSocket extends Thread {
 
 	private Socket insocket;
-	private Map<String, String> map;
-
+	private Map<String, String> mimeMap;
 	ThreadedSocket(Socket insocket) {
 		initiateMap();
 		this.insocket = insocket;
@@ -41,13 +48,13 @@ class ThreadedSocket extends Thread {
 	}
 	
 	private void initiateMap() {
-		map = new HashMap<String, String>();
-		map.put(".html", "Content-Type: text/html; charset=utf-8");
-		map.put(".css", "Content-Type: text/css; charset=utf-8");
-		map.put(".js", "Content-Type: applications/javascript; charset=utf-8");
-		map.put(".png", "Content-Type: image/png");
-		map.put(".jpeg", "Content-Type: image/jpeg");
-		map.put(".jpg", "Content-Type: image/jpg");
+		mimeMap = new HashMap<String, String>();
+		mimeMap.put(".html", "Content-Type: text/html; charset=utf-8");
+		mimeMap.put(".css", "Content-Type: text/css; charset=utf-8");
+		mimeMap.put(".js", "Content-Type: applications/javascript; charset=utf-8");
+		mimeMap.put(".png", "Content-Type: image/png");
+		mimeMap.put(".jpeg", "Content-Type: image/jpeg");
+		mimeMap.put(".jpg", "Content-Type: image/jpg");
 	}
 
 	@Override
@@ -81,6 +88,9 @@ class ThreadedSocket extends Thread {
 			Query q = new Query(shortenString(request_method));
 			String fullPath = q.getPath()+q.getPage();
 			
+			//HashMap<String, String> arguments = q.getArguments();
+			//checkArguments(arguments);
+			
 			if (fullPath.length()==0) {
 				out.println("HTTP/1.0 200 OK");
 				out.println("Content-Type: text/html; charset=utf-8");
@@ -109,8 +119,22 @@ class ThreadedSocket extends Thread {
 		}
 	}
 	
+	public void checkArguments(HashMap<String, String> arguments) {
+		for(Map.Entry<String, String> entry: arguments.entrySet()) {
+			switch(entry.getValue()) {
+			case "userLogin":
+				//check github base
+				//redirect to password page
+				break;
+			case "quizID":
+				//create an arrayList and read through students
+				break;
+			}
+		}
+	}
+	
 	public String mimeType(String input) {
-		for(Map.Entry<String, String> entry: map.entrySet()) {
+		for(Map.Entry<String, String> entry: mimeMap.entrySet()) {
 			if(input.contains(entry.getKey())) {
 				return entry.getValue();
 			}

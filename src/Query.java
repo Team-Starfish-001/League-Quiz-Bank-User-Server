@@ -51,17 +51,14 @@ public class Query {
 	}
 	
 	public HashMap<String, String> getArguments() {
-		System.out.println(Arrays.asList(arguments)); // method 1
 		return arguments;
 	}
 	
-	//test
-	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		Query q1 = new Query("http://example.com/path/to/page.html?name=ferret&color=purple");
 		System.out.println(q1.getPage());
 		System.out.println(q1.getPath());
 		q1.getArguments();
-	}
+	}*/
 	
 }
