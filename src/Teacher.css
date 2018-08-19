@@ -10,32 +10,11 @@
     box-shadow: 1px solid black;
 }
 
-#wrapper {
-    display: block;
-    margin: 0;
-}
-
 #welcome {
     text-align: left;
     font-family: 'Quicksand', sans-serif;
     font-size: 40px;
     color: black;
-}
-
-.split {
-    height: 50%;
-    width: 50%;
-    position: fixed;
-    z-index: 1;
-    top: 150px;
-    overflow-x: hidden;
-    padding-top: 20px;
-    font-family: 'Quicksand', sans-serif;
-}
-
-.left {
-    text-align: center;
-    left: 0;
 }
 
 #standardButton {
@@ -47,12 +26,6 @@
     font-family: 'Quicksand', sans-serif;
     font-weight: 500;
     background-color: #11bfff;
-}
-
-.right {
-    text-align: center;
-    right: 0;
-
 }
 
 #footer {
