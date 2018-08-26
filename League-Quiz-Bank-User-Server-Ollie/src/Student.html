@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <title>
+        Student Page
+    </title>
+    
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Quicksand:400" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="Student.css">
+        <script src='Student.js'></script>
+    </head>
+    
+    <body>
+        <div id='wrapper'>
+            <div id='head'>
+                <a href='#'>
+                <img id='bolt' src="images/bolt.png"/>
+                </a>
+                <h2 id='head_text'>The League Of Amazing Programmers Quiz Bank</h2>
+            </div>
+
+            <h1 id='welcome'>Welcome student!</h1>
+
+            <div id='category_wrapper'>
+                <div class='split left'>
+                    <h1 id='practice_tests'>Practice Tests</h1>
+                    <div><button id='standardButton' onclick='testFunction()'>Level 1</button></div>
+                    <div><button id='standardButton' onclick="testFunction()">Level 2</button></div>
+                    <div><button id='standardButton' onclick="testFunction()">Level 3</button></div>
+                    <div><button id='standardButton' onclick="testFunction()">Level 4</button></div>
+                </div>
+
+                <div class='split right'>
+                    <h1 id='assigned_tests'>Assigned Tests</h1>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
