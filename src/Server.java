@@ -144,6 +144,11 @@ class ThreadedSocket extends Thread {
 
 	public String readFile(String filename) {
 		String s = "";
+		
+		if(filename.equals("favicon.ico")) {
+			return null;
+		}
+		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("src/" + filename));
 			String line = br.readLine();

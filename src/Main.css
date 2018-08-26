@@ -165,3 +165,15 @@ body {
     background-color: #ff772f;
     border-radius: 100px;
 }
+/*"<div id=\'panel\'>
+                    <div id=\'interior_panel\'>
+                        <input placeholder=\'Untitled Quiz\'>
+                        <div id=\'box_break\'></div>
+                        <div id=\'holder\'>
+                            <button id=\'panel_exit\'>Exit</button>
+                            <button id=\'panel_create\'>Create</button>
+                        </div>
+                        <textarea placeholder=\'Quiz Description\'></textarea>
+                    </div>
+                </div>";
+*/

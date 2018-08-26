@@ -17,24 +17,25 @@
                 <div id='league_picture_container'>
                     <img id='league_picture' src='https://raw.githubusercontent.com/camman00/League-Quiz-Bank-Client/master/LeagueQuizBank_HTML/LeagueLogoFFINAL2.jpg'/>
                 </div>
-                <div id='content'>
-                    <div id='user_pass_wrapper'>
-                        <div id='username'>
-                            <input type="text" placeholder="Username" name="usrname" class='default_input' id='username_input'><br>
-                        </div>
-                        <div id='password'>
-                            <input type="text" placeholder="Password" class='default_input' id='password_input'><br>
-                        </div>
-                    </div>
-                    <div id=student_teacher_wrapper>
-                        <div id='student'>
-                            <button class='select_button' id='student_button' onclick="testFunction()">Student</button>
-                        </div>
-                        <div id='teacher'>
-                            <button class='select_button' id='teacher_button'>Teacher</button>
-                        </div>
-                    </div>
-                </div>
+				Username: <input type="text" id="Username" value=""><br>
+				Password: <input type="text" id="Password" value=""><br>
+				<button id="Student">Student</button> 
+				<button id="Teacher">Teacher</button> 
+				<script type ="text/javascript">
+					document.getElementById("Student").onclick = function() {
+						location.href = 'student.html' + getInfo();
+					};
+					document.getElementById("Teacher").onclick = function() {
+						location.href = 'teacher.html' + getInfo();
+					};
+					
+					function getInfo() {
+						var ret = "?";
+						ret += 'User=' + document.getElementById("Username").value + "&";
+						ret += 'Pass=' + document.getElementById("Password").value;
+						return ret;
+					}
+				</script>
             </div>
             <div id='footer'>
                 <a id='panel_left' href='http://www.jointheleague.org/'>

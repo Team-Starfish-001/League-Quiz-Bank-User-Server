@@ -1,4 +1,4 @@
-console.log('Page Initalized');
+console.log('Lift off in 3... 2.... 1');
 window.addEventListener('resize',pageSize);
 var originalWidth = '75%';
 function pageSize() {
