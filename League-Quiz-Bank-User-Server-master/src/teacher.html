@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+    <title>Teacher Portal</title>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Quicksand:400" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="teacher.css">
+        <!--script type="text/javascript" src='teacher.js'></script-->
+        <script src='teacher.js'></script>
+    </head>
+    <body>
+        <div id='all_wrapper'>
+            <div id='head'>
+                <h3 id='header'>Quiz Bank - Teacher Portal</h3>
+            </div>
+            <ul id='navbar'>
+                <li><a href="#">Content Management</a></li>
+                <li><a href="#">Something ?</a></li>
+                <li><a href="#">Something Else ?</a></li>
+            </ul>
+            <div id='sidebar'>
+                <button onclick='dialogCreate()'>Create Quiz</button>
+                <button>Edit Quiz</button>
+                <button>Issue Quiz</button>
+                <button>Delete Quiz</button>
+            </div>
+            <a href='#' id='stray_div'>
+                <img src="pinkbolt.png"/>
+            </a>
+            <div id='nothingtopreview'>
+                <!--p>Nothing to preview</p-->
+            </div>
+            <div id='content'>
+                <center>
+                    <h1>League of Amazing Programmers <br></h1>
+                    <h2>Quiz Generator<br></h2>
+                    <input type='text' id='title' value='QUIZ TITLE'/><br><br>
+                <hr size='3'>
+                </center>
+                <div id='questionBody'></div>
+                <script src='quiz_body.js'></script>
+                </div>
+            <div id='tint_cover'></div>
+        </div>
+    </body>
+</html>

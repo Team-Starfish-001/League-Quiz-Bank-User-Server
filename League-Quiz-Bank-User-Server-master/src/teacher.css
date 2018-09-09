@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css?family=Abel');
+@import url('https://fonts.googleapis.com/css?family=Raleway:300');
+body {
+    margin: 0;
+    overflow-x: hidden;
+    display: block;
+    /*This specific color is depreciated it will
+    produce two random gray rectangles of a color in a lighter tint*/
+    background-color: #101010;
+}
+#head {
+    background-color: #1d1d1d;
+    text-align: center;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-family: 'Quicksand', sans-serif;
+}
+#header {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 80px;
+    color: #ea9a1a;
+}
+#navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #1d1d1d;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid black;
+    font-family: 'Raleway', sans-serif;
+}
+#navbar > li {
+    display: inline;
+    text-align: center;
+    color: #cecece;
+}
+#navbar > li > a {
+    transition: color .3s;
+}
+#navbar > li > a:link, #navbar > li > a:visited, #navbar > li > a:active {
+    text-decoration: none;
+}
+#navbar > li > a:link, #navbar > li > a:visited {
+    color: white;
+}
+#navbar > li > a:hover {
+    color: orange;
+}
+#navbar > li > a:active {
+    color: skyblue;
+}
+#navbar {
+    padding-left: 100px;
+}
+#navbar > li:nth-child(1) {
+    position: absolute;
+    left: 25%;
+}
+#navbar > li:nth-child(2) {
+    position: absolute;
+    left: 50%;
+}
+#navbar > li:nth-child(3) {
+    position: absolute;
+    left: 75%;
+}
+#sidebar {
+    background-color: #1d1d1d;
+    position: absolute;
+    height: 90%;
+    z-index: 1;
+    border-right: 1px solid black;
+    text-align: center;
+}
+#sidebar > * {
+    display: block;
+}
+#sidebar > button {
+    border-style: none;
+    width: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    background-color: inherit;
+    color: white;
+    outline: none;
+}
+#sidebar > button:not(:last-child):hover {
+    background-color: #cc5b08;
+}
+#sidebar > button:last-child:hover {
+    background-color: #be1717;
+}
+#sidebar > button:hover {
+    cursor: pointer;
+}
+#stray_div {
+    position: absolute;
+    top: 0;
+    left: -1px;
+}
+#stray_div > img {
+    width: 50%;
+    border-right: 1px solid white;
+    padding-bottom: 10px;
+    -webkit-filter: invert(.95);
+    filter: invert(.95);
+}
+#nothingtopreview {
+    position: absolute;
+    top: 55%;
+    right: 42%;
+    left: 50%;
+    bottom: 45%;
+    text-align: center;
+    color: #2e2e2e;
+}
+#content {
+    margin-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 1000px;
+    background-color: white;
+    position: absolute;
+    width: 100%;
+}
+#content > * {
+    margin-left: 20px;
+}
+#content > center > * {
+    margin-right: 80px;
+}
+#content > * {
+    
+}
+#tint_cover {
+    /*position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding-bottom: 100%;
+    padding-right: 100%;
+    top: 0;
+    z-index: 1;*/
+}
+#panel {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+    padding: 80px 80px 10px 80px;
+    margin-left: -95px;
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    box-shadow: 1px 1px 20px #646464;
+}
+#panel > #interior_panel > *:first-child {
+    top: 10px;
+    position: absolute;
+}
+#panel > #interior_panel > *:nth-child(2) {
+    border-bottom: 3px solid black;
+    padding-top: 10px;
+    padding-right: 171px;
+    padding-left: 100px;
+    top: 30px;
+    left: 10px;
+    position: absolute;
+    z-index: -1
+}
+#panel > #interior_panel > input {
+    outline: none;
+    background-color: #121212;
+    border: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 12px;
+    caret-color: #ff772f;
+    color: #ff772f;
+}
+#panel > #interior_panel > *:last-child {
+    top: 50px;
+    left: 11px;
+    width: 265px;
+    position: absolute;
+    height: 100px;
+    background-color: #121212;
+    outline: none;
+    border: none;
+    resize: none;
+    z-index: 2;
+    caret-color: #ff772f;
+    color: #ff772f;
+}
+#holder {
+    padding: 70px;
+}
+#holder > button {
+    position: absolute;
+}
+#panel_create {
+    bottom: 25px;
+    right: 25px;
+    outline: none;
+    background-color: #ff872f;
+    border-radius: 3px;
+    border: none;
+    transition: background-color .2s;
+}
+#panel_exit {
+    bottom: 25px;
+    left: 25px;
+    background-color: #ff872f;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    transition: background-color .2s;
+}
+#panel_create:active {
+    background-color: skyblue;
+}
+#panel_exit:hover {
+    background-color: red;
+}
+/*Use javascript to add a right margin at every hr*/
