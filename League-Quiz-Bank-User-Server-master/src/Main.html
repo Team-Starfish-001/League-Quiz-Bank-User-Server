@@ -6,7 +6,6 @@
     		<head>
         		<link href="https://fonts.googleapis.com/css?family=Quicksand:400" rel="stylesheet">
         		<link rel="stylesheet" type="text/css" href="main.css">
-        		<script src='main.js'></script>
         	</head>
     		<body>
         		<div id='all_wrapper'>
@@ -18,17 +17,11 @@
                     		<img id='league_picture' src='https://raw.githubusercontent.com/camman00/League-Quiz-Bank-Client/master/LeagueQuizBank_HTML/LeagueLogoFFINAL2.jpg'/>
                 		</div>
                 		<div id="content" >
-                			<form id="f1" action="welcome.php" method="post">
-							Username: <input type="text" id="username" value=""><br>
-							Password: <input type="text" id="password" value=""><br>
-							<input type="button" class="select_button" id="student_button" onclick="submitForm('Student.html')" value="Student" class="submit_button" />
-							<input type="button" class="select_button" id="teacher_button" onclick="submitForm('Teacher.html')" value="Teacher" class="submit_button" />
-							<script type ="text/javascript">
-								function submitForm(action) {
-				     	   			document.getElementById('f1').action = action;
-									document.getElementById('f1').submit();
-				 	   			}
-							</script>
+						<form action="/Student.html" id="f1" method="post">
+							Username: <input type="text" id="username" name="user" value=""><br>
+							Password: <input type="text" id="password" name="pass" value=""><br>
+							<input type="submit" class="select_button" id="student_button" value="Student">
+							<input type="submit" class="select_button" id="teacher_button" value="Teacher" formaction="/Teacher.html">
 						</form>
 					</div>
             		</div>
