@@ -47,6 +47,7 @@ class ThreadedSocket extends Thread {
 		this.start();
 	}
 	
+	//Chooses content type
 	private void initiateMap() {
 		mimeMap = new HashMap<String, String>();
 		mimeMap.put(".html", "Content-Type: text/html; charset=utf-8");
@@ -60,6 +61,8 @@ class ThreadedSocket extends Thread {
 	@Override
 	public void run() {
 		try {
+			
+			//Gets the input request from the site
 			InputStream is = insocket.getInputStream();
 			PrintWriter out = new PrintWriter(insocket.getOutputStream());
 			BufferedReader in = new BufferedReader(new InputStreamReader(is));
@@ -91,6 +94,7 @@ class ThreadedSocket extends Thread {
 			//HashMap<String, String> arguments = q.getArguments();
 			//checkArguments(arguments);
 			
+			//loads the page based on the query
 			if (fullPath.length()==0) {
 				out.println("HTTP/1.0 200 OK");
 				out.println("Content-Type: text/html; charset=utf-8");
@@ -119,6 +123,7 @@ class ThreadedSocket extends Thread {
 		}
 	}
 	
+	//
 	public void checkArguments(HashMap<String, String> arguments) {
 		for(Map.Entry<String, String> entry: arguments.entrySet()) {
 			switch(entry.getValue()) {
@@ -133,6 +138,7 @@ class ThreadedSocket extends Thread {
 		}
 	}
 	
+	//gets the mime type from a hashmap
 	public String mimeType(String input) {
 		for(Map.Entry<String, String> entry: mimeMap.entrySet()) {
 			if(input.contains(entry.getKey())) {
@@ -142,6 +148,7 @@ class ThreadedSocket extends Thread {
 		return "";
 	}
 
+	//reads the file
 	public String readFile(String filename) {
 		String s = "";
 		
@@ -165,6 +172,7 @@ class ThreadedSocket extends Thread {
 
 	}
 
+	//shortens the request string
 	public String shortenString(String s) {
 		String ret = s.substring(s.indexOf(" ")+2);
 		ret = ret.substring(0, ret.indexOf("HTTP")-1);
