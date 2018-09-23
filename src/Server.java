@@ -52,6 +52,7 @@ class ThreadedSocket extends Thread {
 		mimeMap = new HashMap<String, String>();
 		mimeMap.put(".html", "Content-Type: text/html; charset=utf-8");
 		mimeMap.put(".css", "Content-Type: text/css; charset=utf-8");
+		mimeMap.put(".php", "Content-Type: text/html");
 		mimeMap.put(".js", "Content-Type: applications/javascript; charset=utf-8");
 		mimeMap.put(".png", "Content-Type: image/png");
 		mimeMap.put(".jpeg", "Content-Type: image/jpeg");
@@ -74,12 +75,13 @@ class ThreadedSocket extends Thread {
 			line = "";
 			int postDataI = -1;
 			while ((line = in.readLine()) != null && (line.length() != 0)) {
-				//System.out.println(line);
+				System.out.println(line);
 				if (line.indexOf("Content-Length:") > -1) {
 					postDataI = new Integer(line.substring(line.indexOf("Content-Length:") + 16, line.length()))
 							.intValue();
 				}
 			}
+			System.out.println("\n\n\n");
 
 			String postData = "";
 			if (postDataI > 0) {
